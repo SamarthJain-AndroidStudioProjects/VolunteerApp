@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/display_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/my_opportunities"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/display_name"
+        android:layout_marginTop="100dp"
+        android:backgroundTint="@color/blue"
+        android:text="@string/my_opportunities"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/create_opportunity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/my_opportunities"
+        android:layout_marginTop="100dp"
+        android:backgroundTint="@color/blue"
+        android:text="@string/create_opportunity"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/view_opportunities"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/my_opportunities"
+        android:layout_marginTop="100dp"
+        android:backgroundTint="@color/blue"
+        android:text="@string/view_opportunities"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/account_settings_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/view_opportunities"
+        android:layout_marginTop="100dp"
+        android:backgroundTint="@color/blue"
+        android:text="@string/account_settings"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/account_settings_btn"
+        android:layout_marginTop="100dp"
+        android:backgroundTint="@color/blue"
+        android:text="@string/logout"
+        android:textSize="20sp" />
+
+</RelativeLayout>
