@@ -11,43 +11,48 @@ import java.util.ArrayList;
 
 public interface Firebase {
 
-    default void add(String email, String phone, String type) {
-        User user = new User(email, phone, type);
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(Account.userID);
-
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                databaseReference.setValue(user);
-            }
-            @Override public void onCancelled(@NonNull DatabaseError error) {}
-        });
+    default void addUser(String email, String phone, String type) {
+        FirebaseDatabase.getInstance().getReference("Users").child(Account.userID)
+                .setValue(new User(email, phone, type));
     }
-
-    default void retrieveData(FirebaseCallback firebaseCallback) {
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+    default void getUsers(UserCallback userCallback) {
+        FirebaseDatabase.getInstance().getReference("Users")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     ArrayList<User> users = new ArrayList<>();
                     for (DataSnapshot child : dataSnapshot.getChildren()) {
-                        String value = child.getValue().toString()
-                                .replace("{phone=","")
-                                .replace(" type=","")
-                                .replace(" email=","")
-                                .replace("}","");
-                        users.add(new User(value.split(",")[2], value.split(",")[0], value.split(",")[1]));
+                        users.add(child.getValue(User.class));
                     }
-                    firebaseCallback.onCallBack(users);
+                    userCallback.getUserData(users);
                 }
             }
             @Override public void onCancelled(@NonNull DatabaseError databaseError) {}
         });
     }
 
-    interface FirebaseCallback {
-        void onCallBack(ArrayList<User> list);
+    default void createOpportunity(String name, String description, String address, String startDate, String startTime, String endTime, String volHours) {
+        FirebaseDatabase.getInstance().getReference("Opportunities").setValue
+                (new Opportunity(name, description, address, startDate, startTime, endTime, volHours));
     }
+    default void getOpportunities(OpportunityCallback opportunityCallback){
+        FirebaseDatabase.getInstance().getReference("Opportunities")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.exists()){
+                            ArrayList<Opportunity> opportunities = new ArrayList<>();
+                            for(DataSnapshot child : dataSnapshot.getChildren()){
+                                opportunities.add(child.getValue(Opportunity.class));
+                            }
+                            opportunityCallback.getOpportunities(opportunities);
+                        }
+                    }
+                    @Override public void onCancelled(@NonNull DatabaseError error) { }
+                });
+    }
+    interface UserCallback { void getUserData(ArrayList<User> list); }
+    interface OpportunityCallback { void getOpportunities(ArrayList<Opportunity> opportunities); }
 }
 

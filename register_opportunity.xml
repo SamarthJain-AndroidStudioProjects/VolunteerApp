@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/Register_Opportunity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/Register_Opportunity"
+        android:textColor="@color/black"
+        android:textSize="40sp" />
+
+    <EditText
+        android:id="@+id/Organization_Name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Register_Opportunity"
+        android:layout_marginTop="15dp"
+        android:hint="@string/Organization_Name"
+        android:inputType="textPersonName"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/Description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Organization_Name"
+        android:layout_marginTop="15dp"
+        android:hint="@string/Description"
+        android:inputType="textPersonName"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/Address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Description"
+        android:layout_marginTop="15dp"
+        android:hint="@string/Address"
+        android:inputType="textPostalAddress"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/Maximum_Volunteers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Address"
+        android:layout_marginTop="15dp"
+        android:hint="@string/Maximum_Volunteers"
+        android:inputType="number"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/date_picker_actions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Maximum_Volunteers"
+        android:layout_marginTop="15dp"
+        android:hint="@string/Date"
+        android:inputType="date"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/Starting_Time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/date_picker_actions"
+        android:layout_marginTop="15dp"
+        android:hint="@string/Starting_Time"
+        android:inputType="time"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/Ending_Time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Starting_Time"
+        android:layout_marginTop="15dp"
+        android:hint="@string/Ending_Time"
+        android:inputType="time"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/Num_Vol_Hours"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Ending_Time"
+        android:layout_marginTop="15dp"
+        android:hint="@string/Number_Volunteer_Hours"
+        android:inputType="number"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/Enter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="50dp"
+        android:backgroundTint="@color/blue"
+        android:gravity="center"
+        android:text="@string/Enter"
+        android:textSize="20sp" />
+
+</RelativeLayout>

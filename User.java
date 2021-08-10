@@ -3,6 +3,7 @@ package com.example.volunteer;
 public class User {
     private String email, phone, type;
 
+    public User(){}
     public User(String email, String phone, String type){
      setEmail(email); setPhone(phone); setType(type);
     }

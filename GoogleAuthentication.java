@@ -24,7 +24,7 @@ import com.google.firebase.auth.GoogleAuthProvider;
 
 import java.util.ArrayList;
 
-public class GoogleAuthentication extends AppCompatActivity implements Firebase{
+public class GoogleAuthentication extends AppCompatActivity implements Firebase {
     private GoogleSignInClient client;
     private FirebaseAuth authorization;
 
@@ -76,9 +76,9 @@ public class GoogleAuthentication extends AppCompatActivity implements Firebase{
                             Account.signInAccount = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
                             Account.userID = FirebaseAuth.getInstance().getUid();
 
-                            retrieveData(new FirebaseCallback() {
+                            getUsers(new UserCallback() {
                                 @Override
-                                public void onCallBack(ArrayList<User> list) {
+                                public void getUserData(ArrayList<User> list) {
                                     boolean configured = false;
                                     for(User user : list){
                                         if(user.getEmail().equals(Account.signInAccount.getEmail())){

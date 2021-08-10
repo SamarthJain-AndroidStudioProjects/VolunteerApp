@@ -56,8 +56,8 @@ public class ConfigureAccount extends AppCompatActivity implements View.OnClickL
             else{
                 Toast.makeText(getApplicationContext(), "Account Configured!", Toast.LENGTH_SHORT).show();
 
-                if(isOrganizer) { add(Account.signInAccount.getEmail(), phone, organizer.getText().toString()); }
-                else add(Account.signInAccount.getEmail(), phone, volunteer.getText().toString());
+                if(isOrganizer) { addUser(Account.signInAccount.getEmail(), phone, organizer.getText().toString()); }
+                else addUser(Account.signInAccount.getEmail(), phone, volunteer.getText().toString());
                 startActivity(new Intent(getApplicationContext(), HomeScreen.class));
             }
         }
