@@ -21,11 +21,13 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.homescreen);
 
-        String displayName = "Welcome " + Account.signInAccount.getDisplayName() + "!";
-        ((TextView) findViewById(R.id.display_name)).setText(displayName);
+//        String displayName = "Welcome " + Account.signInAccount.getDisplayName() + "!";
+//        ((TextView) findViewById(R.id.display_name)).setText(displayName);
 
-        if(Account.type.equals("Volunteer")){ findViewById(R.id.create_opportunity).setVisibility(View.INVISIBLE); }
-        if(Account.type.equals("Organizer")){ findViewById(R.id.view_opportunities).setVisibility(View.INVISIBLE); }
+        findViewById(R.id.view_opportunities).setVisibility(View.INVISIBLE);
+
+//        if(Account.type.equals("Volunteer")){ findViewById(R.id.create_opportunity).setVisibility(View.INVISIBLE); }
+//        if(Account.type.equals("Organizer")){ findViewById(R.id.view_opportunities).setVisibility(View.INVISIBLE); }
 
         findViewById(R.id.logout).setOnClickListener(this);
         findViewById(R.id.create_opportunity).setOnClickListener(this);

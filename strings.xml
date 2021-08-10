@@ -43,4 +43,6 @@
     <string name="back">back</string>
     <string name="my_opportunities">My Opportunities</string>
     <string name="account_settings">Account Settings</string>
+    <string name="Maximum_Volunteers">Maximum Volunteers</string>
+    <string name="optional">Optional</string>
 </resources>

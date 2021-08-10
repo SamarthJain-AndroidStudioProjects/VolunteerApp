@@ -1,11 +1,18 @@
 package com.example.volunteer;
 
 public class Opportunity {
-    private String name, description, address, startDate, startTime, endTime, volHours;
+    private String name;
+    private String description;
+    private String address;
+    private String startDate;
+    private String startTime;
+    private String endTime;
+    private String volHours;
+    private String creatorID;
 
     public Opportunity(){}
-    public Opportunity(String n, String d, String a, String sD, String sT, String eT, String vH) {
-        setName(n); setDescription(d); setAddress(a); setStartDate(sD);
+    public Opportunity(String userID, String n, String d, String a, String sD, String sT, String eT, String vH) {
+        setCreatorID(userID); setName(n); setDescription(d); setAddress(a); setStartDate(sD);
         setStartTime(sT); setEndTime(eT); setVolHours(vH);
     }
 
@@ -16,6 +23,7 @@ public class Opportunity {
     public void setStartTime(String sT) { startTime = sT; }
     public void setEndTime(String eT) { endTime = eT; }
     public void setVolHours(String vH) { volHours = vH; }
+    public void setCreatorID(String creatorID) { this.creatorID = creatorID; }
     public String getName(){ return name; }
     public String getDescription(){ return description; }
     public String getAddress(){ return address; }
@@ -23,4 +31,6 @@ public class Opportunity {
     public String getStartTime(){ return startTime; }
     public String getEndTime(){ return endTime; }
     public String getVolHours(){ return volHours; }
+    public String getCreatorID() { return creatorID; }
+
 }

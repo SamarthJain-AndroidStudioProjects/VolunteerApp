@@ -6,8 +6,10 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public interface Firebase {
 
@@ -33,9 +35,19 @@ public interface Firebase {
     }
 
     default void createOpportunity(String name, String description, String address, String startDate, String startTime, String endTime, String volHours) {
-        FirebaseDatabase.getInstance().getReference("Opportunities").setValue
-                (new Opportunity(name, description, address, startDate, startTime, endTime, volHours));
+        getOpportunities(new OpportunityCallback() {
+            @Override
+            public void getOpportunities(ArrayList<Opportunity> opportunities) {
+                ArrayList<Opportunity> userOpportunities = new ArrayList<>();
+                for(Opportunity opportunity : opportunities){
+                    if(opportunity.getCreatorID().equals(Account.userID)) userOpportunities.add(opportunity);
+                }
+                userOpportunities.add(new Opportunity(Account.userID, name, description, address, startDate, startTime, endTime, volHours));
+                FirebaseDatabase.getInstance().getReference("Opportunities").child(Account.userID).setValue(userOpportunities);
+            }
+        });
     }
+
     default void getOpportunities(OpportunityCallback opportunityCallback){
         FirebaseDatabase.getInstance().getReference("Opportunities")
                 .addListenerForSingleValueEvent(new ValueEventListener() {
@@ -44,12 +56,12 @@ public interface Firebase {
                         if(dataSnapshot.exists()){
                             ArrayList<Opportunity> opportunities = new ArrayList<>();
                             for(DataSnapshot child : dataSnapshot.getChildren()){
-                                opportunities.add(child.getValue(Opportunity.class));
+                                opportunities.addAll(Objects.requireNonNull(child.getValue(new GenericTypeIndicator<ArrayList<Opportunity>>(){})));
                             }
                             opportunityCallback.getOpportunities(opportunities);
                         }
                     }
-                    @Override public void onCancelled(@NonNull DatabaseError error) { }
+                    @Override public void onCancelled(@NonNull DatabaseError error) {}
                 });
     }
     interface UserCallback { void getUserData(ArrayList<User> list); }
