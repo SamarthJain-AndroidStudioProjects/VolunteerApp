@@ -1,4 +1,4 @@
-package com.example.volunteer;
+package com.example.volunteer.Objects;
 
 public class User {
     private String email, phone, type;

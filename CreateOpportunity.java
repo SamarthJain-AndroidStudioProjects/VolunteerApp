@@ -1,5 +1,6 @@
 package com.example.volunteer;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -27,6 +28,7 @@ public class CreateOpportunity extends AppCompatActivity implements Firebase{
                 if(volHours.isEmpty()) volHours = "Optional";
                 createOpportunity(name, description, address, startDate, startTime, endTime, volHours);
                 Toast.makeText(getApplicationContext(), "Opportunity Created!", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getApplicationContext(), HomeScreen.class));
             }
             else Toast.makeText(getApplicationContext(), "Fill all required fields", Toast.LENGTH_LONG).show();
         });

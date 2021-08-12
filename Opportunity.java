@@ -1,4 +1,4 @@
-package com.example.volunteer;
+package com.example.volunteer.Objects;
 
 public class Opportunity {
     private String name;

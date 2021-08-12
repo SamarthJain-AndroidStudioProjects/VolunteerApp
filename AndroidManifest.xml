@@ -22,6 +22,8 @@
         <activity android:name=".HomeScreen"/>
         <activity android:name=".ConfigureAccount"/>
         <activity android:name=".CreateOpportunity"/>
+        <activity android:name=".MyOpportunities"/>
+        <activity android:name=".ViewOpportunities"/>
     </application>
 
 </manifest>
