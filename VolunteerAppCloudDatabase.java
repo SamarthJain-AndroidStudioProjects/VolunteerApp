@@ -12,8 +12,8 @@ public class VolunteerAppCloudDatabase implements Firebase{
     public static void setUsers(ArrayList<User> getUsers){
         users.clear(); users.addAll(getUsers);
     }
-    public static void setOpportunities(ArrayList<Opportunity> getClubs){
-        opportunities.clear(); opportunities.addAll(getClubs);
+    public static void setOpportunities(ArrayList<Opportunity> getOpportunities){
+        opportunities.clear(); opportunities.addAll(getOpportunities);
     }
     public static ArrayList<User> getUsers(){
         Firebase.getUsersFromFirebase(); return users;

@@ -17,7 +17,7 @@ import static com.example.volunteer.VolunteerAppCloudDatabase.*;
 public interface Firebase {
 
     default void addUser(String email, String phone, String type) {
-        FirebaseDatabase.getInstance().getReference("Users").child(Account.userID).setValue(new User(email, phone, type));
+        FirebaseDatabase.getInstance().getReference("Users").child(Account.userID).setValue(new User(Account.userID, email, phone, type));
     }
     static void getUsersFromFirebase() {
         FirebaseDatabase.getInstance().getReference("Users").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -33,13 +33,14 @@ public interface Firebase {
         });
     }
 
-    default void createOpportunity(String name, String description, String address, String startDate, String startTime, String endTime, String volHours) {
+    default void addOpportunity(Opportunity newOpportunity) {
         ArrayList<Opportunity> userOpportunities = new ArrayList<>();
         for(Opportunity opportunity : getOpportunities()){
             if(opportunity.getCreatorID().equals(Account.userID)) userOpportunities.add(opportunity);
         }
-        userOpportunities.add(new Opportunity(Account.userID, name, description, address, startDate, startTime, endTime, volHours));
-        FirebaseDatabase.getInstance().getReference("Opportunities").child(Account.userID).setValue(userOpportunities);
+        userOpportunities.add(newOpportunity);
+        FirebaseDatabase.getInstance().getReference("Opportunities").child(newOpportunity.getCreatorID()).removeValue();
+        FirebaseDatabase.getInstance().getReference("Opportunities").child(newOpportunity.getCreatorID()).setValue(userOpportunities);
     }
 
     static void getOpportunitiesFromFirebase(){
@@ -56,5 +57,17 @@ public interface Firebase {
             }
             @Override public void onCancelled(@NonNull DatabaseError error) {}
         });
+    }
+
+    default void addVolunteer(Opportunity opportunity){
+        ArrayList<Opportunity> opportunities = new ArrayList<>(getOpportunities());
+        for(int i = 0; i < opportunities.size(); i++){
+            if(opportunities.get(i).getOpportunityName().equals(opportunity.getOpportunityName())
+                    && opportunities.get(i).getCreatorID().equals(opportunity.getCreatorID())){
+                opportunities.set(i, opportunity); break;
+            }
+        }
+        FirebaseDatabase.getInstance().getReference("Opportunities").child(opportunity.getCreatorID()).removeValue();
+        FirebaseDatabase.getInstance().getReference("Opportunities").child(opportunity.getCreatorID()).setValue(opportunities);
     }
 }

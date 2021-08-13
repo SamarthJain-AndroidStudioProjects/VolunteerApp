@@ -7,30 +7,45 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.volunteer.Objects.Opportunity;
+
+import java.util.ArrayList;
+import static com.example.volunteer.VolunteerAppCloudDatabase.*;
+
 
 public class CreateOpportunity extends AppCompatActivity implements Firebase{
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.register_opportunity);
+        setContentView(R.layout.create_opportunity);
 
-        findViewById(R.id.Enter).setOnClickListener(v -> {
-            String name = ((EditText) findViewById(R.id.Organization_Name)).getText().toString().trim();
-            String description = ((EditText) findViewById(R.id.Description)).getText().toString().trim();
-            String address = ((EditText) findViewById(R.id.Address)).getText().toString().trim();
-            String startDate = ((EditText) findViewById(R.id.date_picker_actions)).getText().toString().trim();
-            String startTime = ((EditText) findViewById(R.id.Starting_Time)).getText().toString().trim();
-            String endTime = ((EditText) findViewById(R.id.Ending_Time)).getText().toString().trim();
-            String volHours = ((EditText) findViewById(R.id.Num_Vol_Hours)).getText().toString().trim();
+        findViewById(R.id.create_btn).setOnClickListener(v -> {
+            String opportunityName = ((EditText) findViewById(R.id.opportunity_name)).getText().toString().trim();
+            String organizerName = ((EditText) findViewById(R.id.organization_name)).getText().toString().trim();
+            String description = ((EditText) findViewById(R.id.description)).getText().toString().trim();
+            String address = ((EditText) findViewById(R.id.address)).getText().toString().trim();
+            String maximumVolunteers = ((EditText) findViewById(R.id.maximum_volunteers)).getText().toString().trim();
+            String startDate = ((EditText) findViewById(R.id.start_date)).getText().toString().trim();
+            String startTime = ((EditText) findViewById(R.id.start_time)).getText().toString().trim();
+            String endTime = ((EditText) findViewById(R.id.end_time)).getText().toString().trim();
 
-            if(!name.isEmpty() && !description.isEmpty() && !address.isEmpty() && !startDate.isEmpty() && !startTime.isEmpty() && !endTime.isEmpty()) {
-                if(volHours.isEmpty()) volHours = "Optional";
-                createOpportunity(name, description, address, startDate, startTime, endTime, volHours);
-                Toast.makeText(getApplicationContext(), "Opportunity Created!", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(getApplicationContext(), HomeScreen.class));
+            if(!opportunityName.isEmpty() && !organizerName.isEmpty() && !description.isEmpty() && !address.isEmpty()
+                    && !maximumVolunteers.isEmpty() && !startDate.isEmpty() && !startTime.isEmpty() && !endTime.isEmpty()) {
+                boolean sameName = false;
+                for(Opportunity opportunity : getOpportunities()){
+                    if(opportunity.getOpportunityName().equals(opportunityName)){
+                        sameName = true; break;
+                    }
+                }
+                if(!sameName){
+                    addOpportunity(new Opportunity(Account.userID, opportunityName, organizerName, description, address, maximumVolunteers, startDate, startTime, endTime, new ArrayList<>()));
+                    Toast.makeText(getApplicationContext(), "Opportunity Created!", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(getApplicationContext(), HomeScreen.class));
+                }
+                else Toast.makeText(getApplicationContext(), "Opportunity Name Taken!", Toast.LENGTH_SHORT).show();
             }
-            else Toast.makeText(getApplicationContext(), "Fill all required fields", Toast.LENGTH_LONG).show();
+            else Toast.makeText(getApplicationContext(), "Fill All Fields!", Toast.LENGTH_LONG).show();
         });
     }
 }

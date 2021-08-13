@@ -27,14 +27,22 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
         if(Account.type.equals("Volunteer")){ findViewById(R.id.create_opportunity).setVisibility(View.INVISIBLE); }
         if(Account.type.equals("Organizer")){ findViewById(R.id.view_opportunities).setVisibility(View.INVISIBLE); }
 
-        findViewById(R.id.logout).setOnClickListener(this);
+        findViewById(R.id.my_opportunities).setOnClickListener(this);
         findViewById(R.id.create_opportunity).setOnClickListener(this);
+        findViewById(R.id.view_opportunities).setOnClickListener(this);
+        findViewById(R.id.logout).setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        if(v.getId() == R.id.create_opportunity){
+        if(v.getId() == R.id.my_opportunities){
+            startActivity(new Intent(getApplicationContext(), MyOpportunities.class));
+        }
+        else if(v.getId() == R.id.create_opportunity){
             startActivity(new Intent(getApplicationContext(), CreateOpportunity.class));
+        }
+        else if(v.getId() == R.id.view_opportunities){
+            startActivity(new Intent(getApplicationContext(), ViewOpportunities.class));
         }
         else if(v.getId() == R.id.logout){
             FirebaseAuth.getInstance().signOut();

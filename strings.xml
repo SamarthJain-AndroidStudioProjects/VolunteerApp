@@ -22,18 +22,16 @@
     <string name="Enter">Enter</string>
     <string name="Register_Opportunity">Create Opportunity</string>
     <string name="Create">create</string>
-    <string name="Number_Volunteer_Hours">Number of Volunteer Hours (optional)</string>
-    <string name="Ending_Time">Ending Time (required)</string>
-    <string name="Starting_Time">Starting Time (required)</string>
-    <string name="Date">Start Date (required)</string>
-    <string name="Address">Address (required)</string>
-    <string name="Description">Description (required)</string>
-    <string name="Organization_Name">Organization Name (required)</string>
+    <string name="Ending_Time">Ending Time</string>
+    <string name="Starting_Time">Starting Time</string>
+    <string name="Date">Start Date</string>
+    <string name="Address">Address</string>
+    <string name="Description">Description</string>
+    <string name="Organization_Name">Organizer/Organization Name</string>
     <string name="view_opportunities">View Opportunities</string>
     <string name="create_opportunity">create opportunity</string>
     <string name="logout">logout</string>
     <string name="opportunities">Opportunities</string>
-    <string name="optionalfield">(Not Specified)</string>
     <string name="delete_account">delete account</string>
     <string name="sign_in_with_google">Sign In With Google</string>
     <string name="configure_account">Configure Account</string>
@@ -41,8 +39,10 @@
     <string name="volunteer">Volunteer</string>
     <string name="save">save</string>
     <string name="back">back</string>
-    <string name="my_opportunities">My Opportunities</string>
     <string name="account_settings">Account Settings</string>
     <string name="Maximum_Volunteers">Maximum Volunteers</string>
-    <string name="optional">Optional</string>
+    <string name="my_opportunities">My Opportunities</string>
+    <string name="view">View</string>
+    <string name="opportunity_name">Opportunity Name</string>
+    <string name="delete">Delete</string>
 </resources>

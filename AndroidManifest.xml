@@ -24,6 +24,7 @@
         <activity android:name=".CreateOpportunity"/>
         <activity android:name=".MyOpportunities"/>
         <activity android:name=".ViewOpportunities"/>
+        <activity android:name=".OpportunityItemView"/>
     </application>
 
 </manifest>

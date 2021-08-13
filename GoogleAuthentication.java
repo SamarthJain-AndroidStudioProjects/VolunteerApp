@@ -78,7 +78,7 @@ public class GoogleAuthentication extends AppCompatActivity {
                     Account.userID = FirebaseAuth.getInstance().getUid();
                     boolean configured = false;
                     for(User user : getUsers()){
-                        if(user.getEmail().equals(Account.signInAccount.getEmail())){
+                        if(user.getUserID().equals(Account.userID)){
                             Account.email = user.getEmail(); Account.phone = user.getPhone(); Account.type = user.getType();
                             startActivity(new Intent(getApplicationContext(), HomeScreen.class));
                             configured = true; break;
