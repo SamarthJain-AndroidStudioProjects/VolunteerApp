@@ -2,8 +2,6 @@ package com.example.volunteer.Objects;
 
 import androidx.annotation.Nullable;
 
-import java.util.ArrayList;
-
 public class Opportunity {
     private String opportunityName;
     private String organizerName;
@@ -14,10 +12,10 @@ public class Opportunity {
     private String startTime;
     private String endTime;
     private String creatorID;
-    private ArrayList<User> volunteers = new ArrayList<>();
+    private String volunteers;
 
     public Opportunity(){}
-    public Opportunity(String creatorID, String opportunityName, String organizerName, String description, String address, String maxVolunteers, String startDate, String startTime, String endTime, ArrayList<User> volunteers) {
+    public Opportunity(String creatorID, String opportunityName, String organizerName, String description, String address, String maxVolunteers, String startDate, String startTime, String endTime, String volunteers) {
         setCreatorID(creatorID); setOpportunityName(opportunityName); setOrganizerName(organizerName); setDescription(description); setAddress(address);
         setMaxVolunteers(maxVolunteers); setStartDate(startDate); setStartTime(startTime); setEndTime(endTime); setVolunteers(volunteers);
     }
@@ -39,6 +37,15 @@ public class Opportunity {
     public void setEndTime(String endTime) { this.endTime = endTime; }
     public String getCreatorID() { return creatorID; }
     public void setCreatorID(String creatorID) { this.creatorID = creatorID; }
-    public ArrayList<User> getVolunteers() { return volunteers; }
-    public void setVolunteers(ArrayList<User> volunteers) { this.volunteers = volunteers; }
+    public String getVolunteers() { return volunteers; }
+    public void setVolunteers(String volunteers) { this.volunteers = volunteers; }
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        if(obj instanceof Opportunity){
+            Opportunity opportunity = (Opportunity) obj;
+            return this.getOpportunityName().equals(opportunity.getOpportunityName());
+        }
+        return false;
+    }
 }

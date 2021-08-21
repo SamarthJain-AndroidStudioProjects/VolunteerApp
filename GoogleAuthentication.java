@@ -25,6 +25,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
 
+import java.util.Objects;
+
 public class GoogleAuthentication extends AppCompatActivity {
     private GoogleSignInClient client;
     private FirebaseAuth authorization;
@@ -33,7 +35,9 @@ public class GoogleAuthentication extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.google_sign_in);
-        initializeDatabase();
+
+        Thread thread = new Thread(VolunteerAppCloudDatabase::initializeDatabase);
+        thread.start(); try { thread.join(); } catch (InterruptedException ignored) {}
 
         authorization = FirebaseAuth.getInstance();
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -74,12 +78,14 @@ public class GoogleAuthentication extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    Account.signInAccount = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
                     Account.userID = FirebaseAuth.getInstance().getUid();
+                    Account.name = Objects.requireNonNull(GoogleSignIn.getLastSignedInAccount(getApplicationContext())).getDisplayName();
+                    Account.email = Objects.requireNonNull(GoogleSignIn.getLastSignedInAccount(getApplicationContext())).getEmail();
                     boolean configured = false;
+
                     for(User user : getUsers()){
                         if(user.getUserID().equals(Account.userID)){
-                            Account.email = user.getEmail(); Account.phone = user.getPhone(); Account.type = user.getType();
+                            Account.phone = user.getPhone(); Account.type = user.getType();
                             startActivity(new Intent(getApplicationContext(), HomeScreen.class));
                             configured = true; break;
                         }

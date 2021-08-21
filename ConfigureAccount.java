@@ -12,21 +12,16 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.common.util.NumberUtils;
-import com.google.firebase.auth.FirebaseAuth;
-
-import java.util.ArrayList;
-
 public class ConfigureAccount extends AppCompatActivity implements View.OnClickListener, Firebase {
     private Button organizer, volunteer;
-    private Boolean isOrganizer = null;
+    private String accountType;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.configure_account);
 
+        accountType = null;
         organizer = findViewById(R.id.organizer); organizer.setOnClickListener(this);
         volunteer = findViewById(R.id.volunteer); volunteer.setOnClickListener(this);
         findViewById(R.id.save_button).setOnClickListener(this);
@@ -37,17 +32,17 @@ public class ConfigureAccount extends AppCompatActivity implements View.OnClickL
         if(v.getId() == R.id.organizer){
             volunteer.setBackgroundColor(Color.BLACK);
             organizer.setBackgroundColor(Color.BLUE);
-            isOrganizer = true;
+            accountType = organizer.getText().toString();
         }
         else if(v.getId() == R.id.volunteer){
             organizer.setBackgroundColor(Color.BLACK);
             volunteer.setBackgroundColor(Color.BLUE);
-            isOrganizer = false;
+            accountType = volunteer.getText().toString();
         }
         else if(v.getId() == R.id.save_button){
             String phone = ((EditText) findViewById(R.id.phone_number)).getText().toString().trim().replace("-", "");
 
-            if(isOrganizer == null){
+            if(accountType == null){
                 Toast.makeText(getApplicationContext(), "Select Account Type!", Toast.LENGTH_SHORT).show();
             }
             else if(phone.length() != 10 || !TextUtils.isDigitsOnly(phone)){
@@ -55,9 +50,8 @@ public class ConfigureAccount extends AppCompatActivity implements View.OnClickL
             }
             else{
                 Toast.makeText(getApplicationContext(), "Account Configured!", Toast.LENGTH_SHORT).show();
-
-                if(isOrganizer) { addUser(Account.signInAccount.getEmail(), phone, organizer.getText().toString()); }
-                else addUser(Account.signInAccount.getEmail(), phone, volunteer.getText().toString());
+                Account.type = accountType; Account.phone = phone;
+                addUserToFirebase();
                 startActivity(new Intent(getApplicationContext(), HomeScreen.class));
             }
         }

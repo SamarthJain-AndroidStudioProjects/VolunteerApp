@@ -21,7 +21,7 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.homescreen);
 
-        String displayName = "Welcome " + Account.signInAccount.getDisplayName() + "!";
+        String displayName = "Welcome " + Account.name + "!";
         ((TextView) findViewById(R.id.display_name)).setText(displayName);
 
         if(Account.type.equals("Volunteer")){ findViewById(R.id.create_opportunity).setVisibility(View.INVISIBLE); }

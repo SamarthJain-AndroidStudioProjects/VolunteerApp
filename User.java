@@ -1,7 +1,5 @@
 package com.example.volunteer.Objects;
 
-import androidx.annotation.Nullable;
-
 public class User {
     private String userID;
     private String email;

@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.volunteer.Objects.Opportunity;
 
-import java.util.ArrayList;
 import static com.example.volunteer.VolunteerAppCloudDatabase.*;
 
 
@@ -39,7 +38,8 @@ public class CreateOpportunity extends AppCompatActivity implements Firebase{
                     }
                 }
                 if(!sameName){
-                    addOpportunity(new Opportunity(Account.userID, opportunityName, organizerName, description, address, maximumVolunteers, startDate, startTime, endTime, new ArrayList<>()));
+                    addOpportunityToFirebase(new Opportunity(Account.userID, opportunityName, organizerName, description, address,
+                            maximumVolunteers, startDate, startTime, endTime, ""));
                     Toast.makeText(getApplicationContext(), "Opportunity Created!", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(getApplicationContext(), HomeScreen.class));
                 }

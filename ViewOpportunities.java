@@ -20,6 +20,8 @@ import com.example.volunteer.Objects.Opportunity;
 import com.example.volunteer.Objects.User;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+
 import static com.example.volunteer.VolunteerAppCloudDatabase.*;
 
 public class ViewOpportunities extends AppCompatActivity {
@@ -31,16 +33,17 @@ public class ViewOpportunities extends AppCompatActivity {
 
         ArrayList<Opportunity> opportunities = new ArrayList<>();
         for(Opportunity opportunity : getOpportunities()){
-            boolean alreadyJoined = false;
-            for(User volunteer : opportunity.getVolunteers()){
-                if (volunteer.getUserID().equals(Account.userID)) { alreadyJoined = true; break; }
-            }
-            if(!alreadyJoined){
-                if(Integer.parseInt(opportunity.getMaxVolunteers()) > opportunity.getVolunteers().size()){
-                    opportunities.add(opportunity);
+            boolean alreadyRegistered = false;
+            for(String id : opportunity.getVolunteers().split(",")){
+                if(id.equals(Account.userID)){
+                    alreadyRegistered = true; break;
                 }
             }
+            if(!alreadyRegistered){
+                opportunities.add(opportunity);
+            }
         }
+
         RecyclerView recyclerView = findViewById(R.id.view_opportunities_rv);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -85,22 +88,19 @@ class ViewOpportunitiesRecyclerAdapter extends RecyclerView.Adapter<ViewOpportun
         @Override
         public void onClick(View v) {
             if(v.getId() == R.id.view_button){
+                Account.currentOpportunity = opportunities.get(getAdapterPosition());
                 v.getContext().startActivity(new Intent(v.getContext(), OpportunityItemView.class));
             }
             else if(v.getId() == R.id.opportunity_btn){
                 if(registerOrDelete.getText().toString().equals("Register")){
                     if(Account.type.equals("Volunteer")) {
                         Opportunity opportunity = opportunities.get(getAdapterPosition());
-                        ArrayList<User> volunteers = new ArrayList<>(opportunities.get(getAdapterPosition()).getVolunteers());
-                        volunteers.add(new User(Account.userID, Account.email, Account.phone, Account.type));
-                        opportunity.setVolunteers(volunteers);
-                        addVolunteer(opportunity);
+                        opportunity.setVolunteers(opportunity.getVolunteers().concat(Account.userID).concat(","));
+                        addOpportunityToFirebase(opportunity);
                         Toast.makeText(v.getContext(), "Registered!", Toast.LENGTH_SHORT).show();
-                        v.getContext().startActivity(new Intent(v.getContext(), MyOpportunities.class));
+//                        v.getContext().startActivity(new Intent(v.getContext(), MyOpportunities.class));
                     }
-                    else{
-                        //delete Opportunity
-                    }
+                    deleteOpportunity(opportunities.get(getAdapterPosition()));
                     opportunities.remove(getAdapterPosition());
                     notifyItemRemoved(getAdapterPosition());
                     notifyItemRangeChanged(getAdapterPosition(), getItemCount());
