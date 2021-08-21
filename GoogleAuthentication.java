@@ -1,7 +1,6 @@
 package com.example.volunteer;
 
 import static com.example.volunteer.VolunteerAppCloudDatabase.getUsers;
-import static com.example.volunteer.VolunteerAppCloudDatabase.initializeDatabase;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.volunteer.Account.Account;
+import com.example.volunteer.Account.ConfigureAccount;
 import com.example.volunteer.Objects.User;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;

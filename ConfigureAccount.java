@@ -1,4 +1,4 @@
-package com.example.volunteer;
+package com.example.volunteer.Account;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -11,6 +11,10 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.volunteer.Firebase;
+import com.example.volunteer.HomeScreen;
+import com.example.volunteer.R;
 
 public class ConfigureAccount extends AppCompatActivity implements View.OnClickListener, Firebase {
     private Button organizer, volunteer;

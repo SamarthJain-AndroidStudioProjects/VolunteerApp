@@ -3,16 +3,14 @@ package com.example.volunteer;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.example.volunteer.Account.Account;
+import com.example.volunteer.RecyclerAdapters.MyOpportunities;
+import com.example.volunteer.RecyclerAdapters.ViewOpportunities;
 import com.google.firebase.auth.FirebaseAuth;
-
-import java.util.Objects;
 
 public class HomeScreen extends AppCompatActivity implements View.OnClickListener{
 

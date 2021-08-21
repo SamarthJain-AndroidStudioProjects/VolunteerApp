@@ -20,10 +20,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".HomeScreen"/>
-        <activity android:name=".ConfigureAccount"/>
+        <activity android:name=".Account.ConfigureAccount"/>
         <activity android:name=".CreateOpportunity"/>
-        <activity android:name=".MyOpportunities"/>
-        <activity android:name=".ViewOpportunities"/>
+        <activity android:name=".RecyclerAdapters.MyOpportunities"/>
+        <activity android:name=".RecyclerAdapters.ViewOpportunities"/>
         <activity android:name=".OpportunityItemView"/>
     </application>
 

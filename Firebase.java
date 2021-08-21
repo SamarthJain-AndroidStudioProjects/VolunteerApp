@@ -2,6 +2,7 @@ package com.example.volunteer;
 
 import androidx.annotation.NonNull;
 
+import com.example.volunteer.Account.Account;
 import com.example.volunteer.Objects.Opportunity;
 import com.example.volunteer.Objects.User;
 import com.google.firebase.database.DataSnapshot;

@@ -1,4 +1,4 @@
-package com.example.volunteer;
+package com.example.volunteer.RecyclerAdapters;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,11 +16,13 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.volunteer.Account.Account;
+import com.example.volunteer.Firebase;
 import com.example.volunteer.Objects.Opportunity;
-import com.example.volunteer.Objects.User;
+import com.example.volunteer.OpportunityItemView;
+import com.example.volunteer.R;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import static com.example.volunteer.VolunteerAppCloudDatabase.*;
 
@@ -33,17 +35,18 @@ public class ViewOpportunities extends AppCompatActivity {
 
         ArrayList<Opportunity> opportunities = new ArrayList<>();
         for(Opportunity opportunity : getOpportunities()){
-            boolean alreadyRegistered = false;
-            for(String id : opportunity.getVolunteers().split(",")){
-                if(id.equals(Account.userID)){
-                    alreadyRegistered = true; break;
+            if(Integer.parseInt(opportunity.getMaxVolunteers()) > opportunity.getVolunteers().split(",").length){
+                boolean alreadyRegistered = false;
+                for(String id : opportunity.getVolunteers().split(",")){
+                    if(id.equals(Account.userID)){
+                        alreadyRegistered = true; break;
+                    }
+                }
+                if(!alreadyRegistered){
+                    opportunities.add(opportunity);
                 }
             }
-            if(!alreadyRegistered){
-                opportunities.add(opportunity);
-            }
         }
-
         RecyclerView recyclerView = findViewById(R.id.view_opportunities_rv);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -75,30 +78,30 @@ class ViewOpportunitiesRecyclerAdapter extends RecyclerView.Adapter<ViewOpportun
 
         public MyViewHolder(@NonNull View view) {
             super(view);
-            opportunityName = view.findViewById(R.id.view_opportunity_name);
+            opportunityName = view.findViewById(R.id.opportunity_item_opportunity_name);
             registerOrDelete = view.findViewById(R.id.right_button);
             if(Account.type.equals("Volunteer")){
-                ((ImageButton) view.findViewById(R.id.opportunity_btn)).setImageResource(R.drawable.ic_baseline_register_24);
+                ((ImageButton) view.findViewById(R.id.opportunity_item_opportunity_button)).setImageResource(R.drawable.ic_baseline_register_24);
                 registerOrDelete.setText(new String("Register"));
             }
-            view.findViewById(R.id.opportunity_btn).setOnClickListener(this);
-            view.findViewById(R.id.view_button).setOnClickListener(this);
+            view.findViewById(R.id.opportunity_item_opportunity_button).setOnClickListener(this);
+            view.findViewById(R.id.opportunity_item_view_button).setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-            if(v.getId() == R.id.view_button){
+            if(v.getId() == R.id.opportunity_item_view_button){
                 Account.currentOpportunity = opportunities.get(getAdapterPosition());
                 v.getContext().startActivity(new Intent(v.getContext(), OpportunityItemView.class));
             }
-            else if(v.getId() == R.id.opportunity_btn){
+            else if(v.getId() == R.id.opportunity_item_opportunity_button){
                 if(registerOrDelete.getText().toString().equals("Register")){
                     if(Account.type.equals("Volunteer")) {
                         Opportunity opportunity = opportunities.get(getAdapterPosition());
                         opportunity.setVolunteers(opportunity.getVolunteers().concat(Account.userID).concat(","));
                         addOpportunityToFirebase(opportunity);
                         Toast.makeText(v.getContext(), "Registered!", Toast.LENGTH_SHORT).show();
-//                        v.getContext().startActivity(new Intent(v.getContext(), MyOpportunities.class));
+                        v.getContext().startActivity(new Intent(v.getContext(), MyOpportunities.class));
                     }
                     deleteOpportunity(opportunities.get(getAdapterPosition()));
                     opportunities.remove(getAdapterPosition());

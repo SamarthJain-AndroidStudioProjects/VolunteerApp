@@ -6,6 +6,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.volunteer.Account.Account;
 import com.example.volunteer.Objects.Opportunity;
 
 public class OpportunityItemView extends AppCompatActivity {

@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.volunteer.Account.Account;
 import com.example.volunteer.Objects.Opportunity;
 
 import static com.example.volunteer.VolunteerAppCloudDatabase.*;

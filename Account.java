@@ -1,4 +1,4 @@
-package com.example.volunteer;
+package com.example.volunteer.Account;
 
 import com.example.volunteer.Objects.Opportunity;
 

@@ -4,7 +4,7 @@
     android:layout_height="wrap_content">
 
     <ImageButton
-        android:id="@+id/view_button"
+        android:id="@+id/opportunity_item_view_button"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_alignParentStart="true"
@@ -15,7 +15,7 @@
         android:id="@+id/left_button"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/view_button"
+        android:layout_below="@id/opportunity_item_view_button"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:gravity="center"
@@ -24,19 +24,19 @@
         android:textSize="14sp" />
 
     <TextView
-        android:id="@+id/view_opportunity_name"
+        android:id="@+id/opportunity_item_opportunity_name"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_toStartOf="@id/opportunity_btn"
-        android:layout_toLeftOf="@id/opportunity_btn"
-        android:layout_toEndOf="@id/view_button"
-        android:layout_toRightOf="@id/view_button"
+        android:layout_toStartOf="@id/opportunity_item_opportunity_button"
+        android:layout_toLeftOf="@id/opportunity_item_opportunity_button"
+        android:layout_toEndOf="@id/opportunity_item_view_button"
+        android:layout_toRightOf="@id/opportunity_item_view_button"
         android:textSize="20sp"
         android:textColor="@color/black"
         android:gravity="center" />
 
     <ImageButton
-        android:id="@+id/opportunity_btn"
+        android:id="@+id/opportunity_item_opportunity_button"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_alignParentEnd="true"
@@ -47,7 +47,7 @@
         android:id="@+id/right_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/opportunity_btn"
+        android:layout_below="@id/opportunity_item_opportunity_button"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:gravity="center"
