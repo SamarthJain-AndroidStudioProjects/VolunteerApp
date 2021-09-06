@@ -39,14 +39,27 @@ public class CreateOpportunity extends AppCompatActivity implements Firebase{
                     }
                 }
                 if(!sameName){
-                    addOpportunityToFirebase(new Opportunity(Account.userID, opportunityName, organizerName, description, address,
-                            maximumVolunteers, startDate, startTime, endTime, ""));
-                    Toast.makeText(getApplicationContext(), "Opportunity Created!", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(getApplicationContext(), HomeScreen.class));
+                    if(isValidOpportunityName(opportunityName)){
+                        addOpportunityToFirebase(new Opportunity(Account.userID, opportunityName, organizerName, description, address,
+                                maximumVolunteers, startDate, startTime, endTime, ""));
+                        Toast.makeText(getApplicationContext(), "Opportunity Created!", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(getApplicationContext(), HomeScreen.class));
+                    }
+                    else Toast.makeText(getApplicationContext(), "Opportunity Name can only contain letters!", Toast.LENGTH_SHORT).show();
                 }
                 else Toast.makeText(getApplicationContext(), "Opportunity Name Taken!", Toast.LENGTH_SHORT).show();
             }
             else Toast.makeText(getApplicationContext(), "Fill All Fields!", Toast.LENGTH_LONG).show();
         });
+    }
+
+    private boolean isValidOpportunityName(String opportunityName){
+        boolean isValidName = true;
+        for (char c : opportunityName.replace(" ", "").toCharArray()) {
+            if (!Character.isLetter(c)) {
+                isValidName = false;
+            }
+        }
+        return isValidName;
     }
 }

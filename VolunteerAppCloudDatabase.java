@@ -21,5 +21,13 @@ public class VolunteerAppCloudDatabase implements Firebase{
     public static ArrayList<Opportunity> getOpportunities(){
         Firebase.getOpportunitiesFromFirebase(); return opportunities;
     }
+    public static User getUserInfo(String uid){
+        for(User user : getUsers()){
+            if(user.getUserID().equals(uid)){
+                return user;
+            }
+        }
+        return null;
+    }
     public static void initializeDatabase(){ getOpportunities(); getUsers(); }
 }

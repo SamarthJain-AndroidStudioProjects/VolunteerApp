@@ -45,8 +45,8 @@
         android:layout_marginLeft="10dp"
         android:layout_marginStart="10dp"
         android:text="@string/address"
-        android:layout_above="@id/start_date_item_view"
-        android:layout_marginBottom="50dp"/>
+        android:layout_below="@id/description_item_view"
+        android:layout_marginTop="50dp"/>
 
     <TextView
         android:id="@+id/start_date_item_view"
@@ -57,8 +57,8 @@
         android:layout_marginLeft="10dp"
         android:layout_marginStart="10dp"
         android:text="@string/start_date"
-        android:layout_above="@id/start_time_item_view"
-        android:layout_marginBottom="50dp"/>
+        android:layout_below="@id/address_item_view"
+        android:layout_marginTop="50dp"/>
 
     <TextView
         android:id="@+id/start_time_item_view"
@@ -69,8 +69,8 @@
         android:layout_marginLeft="10dp"
         android:layout_marginStart="10dp"
         android:text="@string/start_time"
-        android:layout_above="@id/end_time_item_view"
-        android:layout_marginBottom="50dp"/>
+        android:layout_below="@id/start_date_item_view"
+        android:layout_marginTop="50dp"/>
 
     <TextView
         android:id="@+id/end_time_item_view"
@@ -81,8 +81,18 @@
         android:layout_marginLeft="10dp"
         android:layout_marginStart="10dp"
         android:text="@string/end_time"
+        android:layout_below="@id/start_time_item_view"
+        android:layout_marginTop="50dp"/>
+
+    <Button
+        android:id="@+id/view_volunteers_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/view_volunteers"
+        android:textSize="20sp"
+        android:backgroundTint="@color/blue"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="100dp"/>
+        android:layout_marginBottom="50dp"/>
 
 
 

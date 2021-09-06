@@ -1,6 +1,8 @@
 package com.example.volunteer;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -8,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.volunteer.Account.Account;
 import com.example.volunteer.Objects.Opportunity;
+import com.example.volunteer.RecyclerAdapters.ViewVolunteers;
 
 public class OpportunityItemView extends AppCompatActivity {
 
@@ -31,5 +34,15 @@ public class OpportunityItemView extends AppCompatActivity {
                 new String(((TextView) findViewById(R.id.start_time_item_view)).getText() + " " + opportunity.getStartTime()));
         ((TextView) findViewById(R.id.end_time_item_view)).setText(
                 new String(((TextView) findViewById(R.id.end_time_item_view)).getText() + " " + opportunity.getEndTime()));
+
+        if(Account.type.equals("Volunteer")) findViewById(R.id.view_volunteers_btn).setVisibility(View.INVISIBLE);
+        findViewById(R.id.view_volunteers_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(view.getId() == R.id.view_volunteers_btn){
+                    startActivity(new Intent(getApplicationContext(), ViewVolunteers.class));
+                }
+            }
+        });
     }
 }

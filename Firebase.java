@@ -18,7 +18,7 @@ import static com.example.volunteer.VolunteerAppCloudDatabase.*;
 public interface Firebase {
 
     default void addUserToFirebase() {
-        FirebaseDatabase.getInstance().getReference("Users").child(Account.userID).setValue(new User(Account.userID, Account.email, Account.phone, Account.type));
+        FirebaseDatabase.getInstance().getReference("Users").child(Account.userID).setValue(new User(Account.userID, Account.name, Account.email, Account.phone, Account.type));
     }
 
     static void getUsersFromFirebase() {

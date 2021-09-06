@@ -18,6 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/Register_Opportunity"
         android:layout_marginTop="15dp"
+        android:maxLength="50"
         android:hint="@string/opportunity_name"
         android:inputType="text"
         android:textColor="@color/black"
@@ -29,6 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/opportunity_name"
         android:layout_marginTop="15dp"
+        android:maxLength="50"
         android:hint="@string/Organization_Name"
         android:inputType="textPersonName"
         android:textColor="@color/black"
@@ -41,6 +43,7 @@
         android:layout_below="@id/organization_name"
         android:layout_marginTop="15dp"
         android:hint="@string/Description"
+        android:maxLength="200"
         android:inputType="textPersonName"
         android:textColor="@color/black"
         android:textSize="20sp" />
@@ -51,6 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/description"
         android:layout_marginTop="15dp"
+        android:maxLength="50"
         android:hint="@string/Address"
         android:inputType="textPostalAddress"
         android:textColor="@color/black"
@@ -62,6 +66,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/address"
         android:layout_marginTop="15dp"
+        android:maxLength="5"
         android:hint="@string/Maximum_Volunteers"
         android:inputType="number"
         android:textColor="@color/black"
@@ -74,6 +79,7 @@
         android:layout_below="@id/maximum_volunteers"
         android:layout_marginTop="15dp"
         android:hint="@string/Date"
+        android:maxLength="10"
         android:inputType="date"
         android:textColor="@color/black"
         android:textSize="20sp" />
@@ -85,7 +91,8 @@
         android:layout_below="@id/start_date"
         android:layout_marginTop="15dp"
         android:hint="@string/Starting_Time"
-        android:inputType="time"
+        android:maxLength="15"
+        android:inputType="text"
         android:textColor="@color/black"
         android:textSize="20sp" />
 
@@ -96,7 +103,8 @@
         android:layout_below="@id/start_time"
         android:layout_marginTop="15dp"
         android:hint="@string/Ending_Time"
-        android:inputType="time"
+        android:inputType="text"
+        android:maxLength="15"
         android:textColor="@color/black"
         android:textSize="20sp" />
 
