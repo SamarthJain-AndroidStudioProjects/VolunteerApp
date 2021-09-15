@@ -41,7 +41,9 @@ public class ViewVolunteers extends AppCompatActivity {
 class ViewVolunteersRecyclerAdapter extends RecyclerView.Adapter<ViewVolunteersRecyclerAdapter.MyViewHolder> {
     private final ArrayList<User> volunteers;
 
-    public ViewVolunteersRecyclerAdapter(ArrayList<User> volunteers) { this.volunteers = volunteers; }
+    public ViewVolunteersRecyclerAdapter(ArrayList<User> volunteers) {
+        this.volunteers = volunteers;
+    }
 
     @NonNull
     @Override

@@ -27,6 +27,7 @@
         <activity android:name=".RecyclerAdapters.ViewOpportunities"/>
         <activity android:name=".OpportunityItemView"/>
         <activity android:name=".RecyclerAdapters.ViewVolunteers"/>
+        <activity android:name=".AccountSettings"/>
     </application>
 
 </manifest>

@@ -15,6 +15,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.volunteer.Firebase;
 import com.example.volunteer.HomeScreen;
 import com.example.volunteer.R;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+
+import java.util.Objects;
 
 public class ConfigureAccount extends AppCompatActivity implements View.OnClickListener, Firebase {
     private Button organizer, volunteer;
@@ -55,8 +58,10 @@ public class ConfigureAccount extends AppCompatActivity implements View.OnClickL
             else{
                 Toast.makeText(getApplicationContext(), "Account Configured!", Toast.LENGTH_SHORT).show();
                 Account.type = accountType; Account.phone = phone;
+                Account.name = Objects.requireNonNull(GoogleSignIn.getLastSignedInAccount(getApplicationContext())).getDisplayName();
                 addUserToFirebase();
                 startActivity(new Intent(getApplicationContext(), HomeScreen.class));
+                finish();
             }
         }
     }

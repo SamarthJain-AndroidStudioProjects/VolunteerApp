@@ -63,4 +63,17 @@ public interface Firebase {
         FirebaseDatabase.getInstance().getReference("Opportunities").setValue(opportunities);
         setOpportunities(opportunities);
     }
+
+    default void changeName(String newName){
+        deleteAccount(); Account.name = newName; addUserToFirebase(); getUsers();
+    }
+
+    default void changePhoneNumber(String phoneNumber){
+        deleteAccount(); Account.phone = phoneNumber; addUserToFirebase(); getUsers();
+    }
+
+    default void deleteAccount(){
+        FirebaseDatabase.getInstance().getReference("Users").child(Account.userID).removeValue();
+        getUsers();
+    }
 }

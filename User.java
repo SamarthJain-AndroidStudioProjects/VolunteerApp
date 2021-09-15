@@ -1,5 +1,7 @@
 package com.example.volunteer.Objects;
 
+import androidx.annotation.Nullable;
+
 public class User {
     private String userID;
     private String name;
@@ -22,4 +24,12 @@ public class User {
     public String getPhone() { return phone; }
     public String getType(){ return type; }
 
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        if(obj instanceof User){
+            User user = (User) obj;
+            return this.getUserID().equals(user.getUserID());
+        }
+        return false;
+    }
 }

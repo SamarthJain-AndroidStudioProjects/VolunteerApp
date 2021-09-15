@@ -9,4 +9,6 @@ public class Account {
     public static String phone;
     public static String name;
     public static Opportunity currentOpportunity;
+    public static boolean botCheck = false;
+    public static void reset(){ botCheck = false; }
 }

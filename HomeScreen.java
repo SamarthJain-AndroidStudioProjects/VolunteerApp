@@ -28,6 +28,7 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
         findViewById(R.id.my_opportunities).setOnClickListener(this);
         findViewById(R.id.create_opportunity).setOnClickListener(this);
         findViewById(R.id.view_opportunities).setOnClickListener(this);
+        findViewById(R.id.account_settings_btn).setOnClickListener(this);
         findViewById(R.id.logout).setOnClickListener(this);
     }
 
@@ -42,8 +43,12 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
         else if(v.getId() == R.id.view_opportunities){
             startActivity(new Intent(getApplicationContext(), ViewOpportunities.class));
         }
+        else if(v.getId() == R.id.account_settings_btn){
+            startActivity(new Intent(getApplicationContext(), AccountSettings.class));
+        }
         else if(v.getId() == R.id.logout){
             FirebaseAuth.getInstance().signOut();
+            Account.reset();
             startActivity(new Intent(getApplicationContext(), GoogleAuthentication.class));
         }
     }
